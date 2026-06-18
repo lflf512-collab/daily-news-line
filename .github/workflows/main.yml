@@ -1,6 +1,8 @@
-name: Daily News Test
+name: Daily News Line
 
 on:
+  schedule:
+    - cron: "30 0 * * *"
   workflow_dispatch:
 
 jobs:
@@ -17,3 +19,6 @@ jobs:
       - run: pip install -r requirements.txt
 
       - run: python news_bot.py
+        env:
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_USER_ID: ${{ secrets.LINE_USER_ID }}
