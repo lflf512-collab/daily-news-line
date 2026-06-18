@@ -7,7 +7,7 @@ LINE_USER_ID = os.getenv("LINE_USER_ID")
 
 feeds = [
     ("台灣新聞", "https://news.google.com/rss/search?q=台灣&hl=zh-TW&gl=TW&ceid=TW:zh-Hant", 10),
-    ("國際新聞", "https://news.google.com/rss/search?q=國際&hl=zh-TW&gl=TW&ceid=TW:zh-Hant", 5),
+    ("國際新聞", "https://news.google.com/rss/search?q=world%20news&hl=zh-TW&gl=TW&ceid=TW:zh-Hant", 5),
 ]
 
 message_parts = ["早安，這是今天的新聞摘要："]
@@ -17,7 +17,7 @@ for title, url, limit in feeds:
     feed = feedparser.parse(url)
 
     for i, entry in enumerate(feed.entries[:limit], 1):
-        message_parts.append(f"{i}. {entry.title}\n{entry.link}")
+        message_parts.append(f"{i}. {entry.title}")
 
 message = "\n".join(message_parts)
 
